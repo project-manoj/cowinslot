@@ -34,6 +34,9 @@ import os
 filename = "/tmp/slot18"
 
 # Send an email
+# if you are using gmail you need to generate app password
+# as your email password wont work here
+# https://support.google.com/accounts/answer/185833?hl=en for details
 def send_email(msg_body):
 
     user_email = "user1@gmail.com"
@@ -67,6 +70,7 @@ def getSlotsDistrict(district, date_now):
 
     sessions = json.loads(response)["sessions"]
     for session in sessions:
+        # Notify only if slots are available for age less than 45
         if (
             float(session["min_age_limit"] < 45)
             and float(session["available_capacity"]) > 1
