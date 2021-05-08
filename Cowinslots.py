@@ -64,9 +64,11 @@ def send_email(msg_body):
 
 # Get District wise slot availablity
 def getSlotsDistrict(district, date_now):
-
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
+    }
     url_delhi = f"https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id={district}&date={date_now}"
-    response = requests.get(url_delhi).text
+    response = requests.get(url_delhi, headers=headers).text
 
     sessions = json.loads(response)["sessions"]
     for session in sessions:
@@ -102,8 +104,11 @@ email_body = []
 
 # district code for delhi is 9
 # check for your district code
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
+}
 url_delhi = "https://cdn-api.co-vin.in/api/v2/admin/location/districts/9"
-response = requests.get(url_delhi).text
+response = requests.get(url_delhi, headers=headers).text
 
 
 for i in range(duration):
